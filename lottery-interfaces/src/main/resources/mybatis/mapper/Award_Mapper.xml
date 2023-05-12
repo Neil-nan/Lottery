@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itedus.lottery.infrastructure.dao.IAwardDao">
+
+    <sql id="selectFields">
+        id, awardId, awardType, awardCount, awardName, awardContent, createTime, updateTime
+    </sql>
+
+    <sql id="insertFields">
+        awardId, awardType, awardCount, awardName, awardContent, createTime, updateTime
+    </sql>
+
+    <select id="queryAwardInfo" parameterType="java.lang.String" resultType="cn.itedus.lottery.infrastructure.po.Award">
+        SELECT <include refid="selectFields"></include>
+        FROM award
+        WHERE awardId = #{awarId}
+    </select>
+
+    <insert id="addAward" parameterType="cn.itedus.lottery.infrastructure.po.Award">
+        INSERT INTO award
+        (<include refid="insertFields"></include>)
+        VALUES
+        (#{awardId}, #{awardType}, #{awardCount}, #{awardName}, #{awardContent}, now(), now())
+    </insert>
+
+</mapper>
+
+

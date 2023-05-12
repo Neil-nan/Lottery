@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itedus.lottery.infrastructure.dao.IStrategyDao">
+
+    <sql id="selectFields">
+        strategyId, strategyDesc, strategyMode, grantType, grantDate, extInfo , createTime, updateTime
+    </sql>
+
+    <sql id="insertFields">
+        strategyId, strategyDesc, strategyMode, grantType, grantDate, extInfo, createTime, updateTime
+    </sql>
+
+    <insert id="addStrategy" parameterType="cn.itedus.lottery.infrastructure.po.Strategy">
+        INSERT INTO strategy
+        (<include refid="selectFields"></include>)
+        VALUES
+        (#{strategyId}, #{strategyDesc}, #{strategyMode}, #{grantType}, #{grantDate}, #{extInfo}, now(), now())
+    </insert>
+
+
+    <select id="queryStrategy" parameterType="java.lang.Long" resultType="cn.itedus.lottery.infrastructure.po.Strategy">
+        SELECT <include refid="selectFields"></include>
+        FROM strategy
+        WHERE strategyId = #{strategyId}
+    </select>
+
+</mapper>
