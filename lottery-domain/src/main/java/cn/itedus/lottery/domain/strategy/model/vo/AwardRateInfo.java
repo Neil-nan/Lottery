@@ -1,10 +1,8 @@
 package cn.itedus.lottery.domain.strategy.model.vo;
 
-import lombok.Data;
 
 import java.math.BigDecimal;
 
-@Data
 public class AwardRateInfo {
 
     //奖品ID

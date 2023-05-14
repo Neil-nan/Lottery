@@ -6,6 +6,12 @@ import org.springframework.stereotype.Component;
 import java.security.SecureRandom;
 import java.util.List;
 
+/**
+ * @description: 单项随机概率抽奖，抽到一个已经排掉的奖品则未中奖
+ * @author：Neilnan
+ * @date: 2023/5/14
+ * @Copyright：
+ */
 @Component("singleRateRandomDrawAlgorithm")
 public class SingleRateRandomDrawAlgorithm extends BaseAlgorithm {
 
@@ -24,7 +30,9 @@ public class SingleRateRandomDrawAlgorithm extends BaseAlgorithm {
 
         //返回结果
         String awardId = rateTuple[idx];
-        if(excludeAwardIds.contains(awardId)) return "未中奖";
+        if(excludeAwardIds.contains(awardId)) {
+            return "未中奖";
+        }
 
         return awardId;
     }
